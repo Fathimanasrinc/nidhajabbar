@@ -10,9 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Aref+Ruqaa:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=20260701_v2">
+    <link rel="stylesheet" href="style.css?v=20260701_v3">
 </head>
 <body>
+ 
+    <!-- Background Video Layer -->
+    <div class="bg-video-container">
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="assets/wedding_bg_video.mp4" type="video/mp4">
+        </video>
+        <div class="bg-video-overlay"></div>
+    </div>
 
     <!-- SVG Definitions for Patterns & Gradients -->
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -215,8 +223,10 @@
                 <div class="person-card">
                     <h2 class="person-name">Shaheen Muhammed .T</h2>
                     <div class="parents-block">
-                        <p class="parent-label">To Groom</p>
-                        <p class="groom-parents">Son of the family</p>
+                        <p class="parent-label">Son of</p>
+                        <p class="father-name">Muhammed Kutty .T</p>
+                        <p class="conjunction">&amp;</p>
+                        <p class="mother-name">Haseena Kurikkal</p>
                     </div>
                 </div>
 
@@ -461,6 +471,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="app.js?v=20260701_v2"></script>
+    <script src="app.js?v=20260701_v3"></script>
 </body>
 </html>
