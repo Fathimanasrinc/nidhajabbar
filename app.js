@@ -2,35 +2,44 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // --- DOM Elements ---
     const welcomeGate = document.getElementById("welcomeGate");
-    const openInviteBtn = document.getElementById("openInviteBtn");
+    const waxSeal = document.getElementById("waxSeal");
+    const envelope = document.getElementById("envelope");
     const mainContent = document.getElementById("mainContent");
     const bgMusic = document.getElementById("bgMusic");
     const audioToggle = document.getElementById("audioToggle");
     const rsvpForm = document.getElementById("rsvpForm");
     const wishesBoard = document.getElementById("wishesBoard");
 
-    // --- 1. Gate Unlock & Music Play ---
-    openInviteBtn.addEventListener("click", () => {
-        // Unlock main scroll
-        mainContent.classList.remove("hidden-scroll");
-        
-        // Slide up gate screen
-        welcomeGate.classList.add("slide-up");
-        
-        // Show floating music control
-        audioToggle.classList.remove("hidden");
-        
-        // Play Background Music
-        playAudio();
+    // --- 1. Envelope Open Gate Unlock & Music Play ---
+    if (waxSeal && envelope) {
+        waxSeal.addEventListener("click", () => {
+            // Fold flap open and peek card
+            envelope.classList.add("open");
+            
+            // Wait for 3D unfold animation to complete before sliding away cover gate
+            setTimeout(() => {
+                // Unlock main scroll
+                mainContent.classList.remove("hidden-scroll");
+                
+                // Slide up gate screen
+                welcomeGate.classList.add("slide-up");
+                
+                // Show floating music control
+                audioToggle.classList.remove("hidden");
+                
+                // Play Background Music
+                playAudio();
 
-        // Initialize scroll animations
-        initScrollAnimations();
-        
-        // Remove gate from DOM after transition completes to save resources
-        setTimeout(() => {
-            welcomeGate.style.display = "none";
-        }, 1200);
-    });
+                // Initialize scroll animations
+                initScrollAnimations();
+                
+                // Remove gate from DOM after slide-up completes
+                setTimeout(() => {
+                    welcomeGate.style.display = "none";
+                }, 1500);
+            }, 1200);
+        });
+    }
 
     // --- 2. Audio Player Management ---
     let isPlaying = false;

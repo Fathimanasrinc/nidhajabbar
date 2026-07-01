@@ -2,16 +2,16 @@
    DESIGN SYSTEM & CUSTOM VARIABLES
 ------------------------------------------------------------- */
 :root {
-    /* Color Palette */
-    --primary-red: #7A1C1C;       /* Royal Crimson */
-    --primary-red-rgb: 122, 28, 28;
-    --primary-red-dark: #3E0C0C;  /* Very Dark Burgundy */
-    --gold: #D3B683;             /* Warm Champagne Gold */
-    --gold-light: #F3E5D0;       /* Soft Glow Gold */
-    --gold-dark: #A68050;        /* Bronze Gold Accent */
-    --bg-cream: #FDFBF7;         /* Ivory Accent */
-    --text-light: #FFFDF9;       /* Soft White Text */
-    --text-muted: rgba(255, 253, 249, 0.75);
+    /* Color Palette - Luxury Champagne & Classical Gown Theme */
+    --primary-champagne: #F4EFE6; /* Warm Ivory background base */
+    --primary-gold: #C5A880;      /* Reflective textured Gold */
+    --gold-light: #FBF8F3;       /* Soft Gold sheen */
+    --gold-dark: #8E7047;         /* Deep Bronze */
+    --bg-cream: #FFFDF9;          /* Pure Linen Paper color */
+    --text-dark: #3C352D;         /* Charcoal with warm amber undertones */
+    --text-muted: rgba(60, 53, 45, 0.75);
+    --shadow-color: rgba(92, 80, 68, 0.12);
+    --accent-emerald: #3B4A3C;    /* Classic forest/olive green ring detail accent */
     
     /* Layout & Spacing */
     --border-radius-lg: 24px;
@@ -24,6 +24,7 @@
     --font-body: 'Montserrat', sans-serif;
     --font-arabic: 'Aref Ruqaa', serif;
     --font-script: 'Pinyon Script', cursive;
+    --font-serif: 'Cormorant Garamond', serif;
 }
 
 /* Reset and Base Styles */
@@ -36,15 +37,15 @@
 html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
-    color: var(--text-light);
-    background-color: var(--primary-red-dark);
+    color: var(--text-dark);
+    background-color: var(--primary-champagne);
     overflow-x: hidden;
 }
 
 body {
     min-height: 100vh;
-    /* Rich multitone gradient overlaid on the custom premium wedding background */
-    background-image: linear-gradient(135deg, rgba(62, 12, 12, 0.92) 0%, rgba(122, 28, 28, 0.8) 50%, rgba(30, 5, 5, 0.95) 100%), url('assets/wedding_bg.png');
+    /* Soft, bright champagne gradient overlaid on the custom classical oil background painting */
+    background-image: linear-gradient(135deg, rgba(244, 239, 230, 0.45) 0%, rgba(251, 249, 246, 0.6) 50%, rgba(244, 239, 230, 0.5) 100%), url('assets/wedding_oil_bg.png');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -65,7 +66,7 @@ h1, h2, h3, h4 {
 
 /* Premium Gold Text Gradient */
 .gold-text {
-    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold));
+    background: linear-gradient(135deg, var(--gold-dark), var(--primary-gold), var(--gold-dark));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 600;
@@ -80,13 +81,13 @@ h1, h2, h3, h4 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50 Z' fill='none' stroke='%23D3B683' stroke-width='0.4' stroke-opacity='0.08'/%3E%3Crect x='25' y='25' width='50' height='50' fill='none' stroke='%23D3B683' stroke-width='0.4' stroke-opacity='0.08' transform='rotate%2845, 50, 50%29'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='12' fill='none' stroke='%23C5A880' stroke-width='0.4' stroke-opacity='0.08'/%3E%3Cpath d='M60 0 L120 60 L60 120 L0 60 Z' fill='none' stroke='%23C5A880' stroke-width='0.4' stroke-opacity='0.08'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 1;
 }
 
 /* -------------------------------------------------------------
-   SPLASH / COVER GATE SECTION
+   SPLASH / COVER GATE SECTION WITH CSS ENVELOPE
 ------------------------------------------------------------- */
 .gate-overlay {
     position: fixed;
@@ -94,14 +95,14 @@ h1, h2, h3, h4 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(135deg, rgba(40, 5, 5, 0.96), rgba(80, 16, 16, 0.95)), url('assets/wedding_bg.png');
+    background-image: linear-gradient(135deg, rgba(251, 249, 246, 0.1), rgba(244, 239, 230, 0.2)), url('assets/wedding_oil_bg.png');
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
     overflow: hidden;
 }
 
@@ -113,8 +114,8 @@ h1, h2, h3, h4 {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z' fill='none' stroke='%23D3B683' stroke-width='0.5' stroke-opacity='0.08'/%3E%3C/svg%3E");
-    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z' fill='none' stroke='%23C5A880' stroke-width='0.4' stroke-opacity='0.06'/%3E%3C/svg%3E");
+    opacity: 0.4;
     z-index: 1;
 }
 
@@ -125,151 +126,248 @@ h1, h2, h3, h4 {
     max-width: 500px;
     padding: 15px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
-.gate-frame {
-    background-color: rgba(62, 12, 12, 0.75);
-    border: 2px solid var(--gold);
-    border-radius: 120px 120px 24px 24px;
-    padding: 50px 30px;
-    position: relative;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(211, 182, 131, 0.15);
-    backdrop-filter: blur(12px);
-}
-
-.gate-frame::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-    border: 1px solid var(--gold);
-    border-radius: inherit;
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-/* Hanging Lanterns */
-.lantern-wrapper {
-    position: absolute;
-    top: -10px;
-    animation: sway 4s ease-in-out infinite alternate;
-    transform-origin: top center;
-}
-
-.lantern-wrapper.left { left: 10%; }
-.lantern-wrapper.right { right: 10%; }
-
-@keyframes sway {
-    0% { transform: rotate(-5deg); }
-    100% { transform: rotate(5deg); }
-}
-
-/* Bismillah Gate */
-.bismillah-container {
-    margin-bottom: 25px;
-}
-
-.bismillah-arabic {
-    font-family: var(--font-arabic);
-    font-size: 2.2rem;
-    color: var(--gold-light);
-    line-height: 1.2;
+/* Welcome Titles above envelope */
+.gate-intro-container {
     margin-bottom: 5px;
-    text-shadow: 0 2px 8px rgba(243, 229, 208, 0.2);
 }
 
-.bismillah-translation {
-    font-size: 0.65rem;
+.gate-header-tag {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-}
-
-.gate-intro-text {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 500;
     letter-spacing: 4px;
-    color: var(--gold);
-    margin-bottom: 20px;
+    color: var(--text-dark);
+    opacity: 0.9;
+    margin-bottom: 5px;
 }
 
 .couple-names-gate {
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.couple-names-gate .bride-name,
-.couple-names-gate .groom-name {
-    font-size: 3.6rem;
     font-family: var(--font-script);
-    color: var(--gold-light);
+    font-size: 3.8rem;
+    color: var(--gold-dark);
     font-weight: 400;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    text-shadow: 0 1px 3px rgba(255,255,255,0.7);
     line-height: 1.1;
 }
 
-.couple-names-gate .ampersand {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    color: var(--gold);
-    font-style: italic;
-    opacity: 0.8;
+/* 3D ENVELOPE WRAPPER */
+.envelope-wrapper {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    perspective: 1000px;
+    margin: 15px auto;
 }
 
-.gate-divider {
+/* Envelope Box Structure */
+.envelope {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #EFEBE4; /* Base ivory linen shadow color */
+    border-radius: 4px;
+    box-shadow: 0 15px 40px rgba(60, 53, 45, 0.2);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+/* Envelope Back Side */
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #EAE5DC;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+/* Peeking Card Insert */
+.envelope-paper {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    width: 296px;
+    height: 204px;
+    background: var(--bg-cream);
+    border: 1px solid rgba(197, 168, 128, 0.6);
+    border-radius: 2px;
+    z-index: 2;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), z-index 0.3s;
+    padding: 35px 20px;
+    text-align: center;
+    box-shadow: inset 0 0 15px rgba(197,168,128,0.06), 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.bismillah-container-mini {
     margin-bottom: 25px;
+}
+
+.bismillah-arabic-mini {
+    font-family: var(--font-arabic);
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+    line-height: 1.2;
+}
+
+.paper-text {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    letter-spacing: 5px;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+}
+
+/* Envelope Folds (Left, Right, Bottom) */
+.envelope-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid #F5F1E9; /* Light linen fold color */
+    border-top: 110px solid transparent;
+    border-bottom: 110px solid transparent;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    z-index: 3;
+}
+
+.envelope-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-right: 160px solid #F5F1E9;
+    border-top: 110px solid transparent;
+    border-bottom: 110px solid transparent;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    z-index: 3;
+}
+
+.envelope-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-bottom: 110px solid #ECE7DE; /* Slightly darker bottom flap fold */
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    z-index: 3;
+}
+
+/* Envelope Top Flap (closes over bottom flaps) */
+.envelope-top-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 112px solid #E3DDD3; /* Darker paper shadow */
+    transform-origin: top center;
+    transition: transform 0.8s ease-in-out, z-index 0.2s 0.4s;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    filter: drop-shadow(0 2px 3px rgba(60, 53, 45, 0.15));
+    z-index: 4;
+}
+
+/* Lace Trim decoration overlay along Top Flap */
+.envelope-top-flap::after {
+    content: '';
+    position: absolute;
+    top: -116px;
+    left: -160px;
+    width: 320px;
+    height: 116px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0,0 Q20,35 40,0' fill='none' stroke='%23FFF' stroke-width='2' stroke-opacity='0.6'/%3E%3Ccircle cx='20' cy='15' r='2' fill='%23FFF' fill-opacity='0.6'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom center;
+    pointer-events: none;
+    transform: rotateX(180deg);
+    opacity: 0.85;
+}
+
+/* WAX SEAL BUTTON */
+.wax-seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #F4ECE1 0%, #DED6C7 100%);
+    border: 2px solid #CFC7B9;
+    box-shadow: 0 4px 12px rgba(60, 53, 45, 0.35), inset 0 2px 2px #FFF, inset 0 -2px 3px rgba(0,0,0,0.1);
+    cursor: pointer;
+    z-index: 10;
     display: flex;
     justify-content: center;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.gate-date {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    letter-spacing: 6px;
-    color: var(--gold-light);
-    margin-bottom: 35px;
+.wax-seal:hover {
+    transform: translate(-50%, -20%) scale(1.08);
+    box-shadow: 0 6px 16px rgba(60, 53, 45, 0.45);
 }
 
-/* Premium Button */
-.premium-btn {
-    position: relative;
-    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark));
-    color: var(--primary-red-dark);
-    border: none;
-    padding: 14px 35px;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 600;
+.wax-seal:active {
+    transform: translate(-50%, -20%) scale(0.96);
+}
+
+.wax-swan-svg {
+    filter: drop-shadow(0 1px 1px rgba(255,255,255,0.5));
+}
+
+/* ENVELOPE OPEN STATE ANIMATIONS */
+.envelope.open .envelope-top-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope.open .envelope-paper {
+    transform: translateY(-100px);
+    z-index: 3;
+}
+
+.envelope.open .wax-seal {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -20%) scale(0.7);
+}
+
+/* Footer Hint */
+.gate-footer {
+    margin-top: 10px;
+}
+
+.open-label-hint {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), inset 0 2px 2px rgba(255, 255, 255, 0.4);
-    transition: all 0.3s ease;
-    z-index: 5;
-    text-decoration: none;
+    letter-spacing: 3px;
+    color: var(--text-dark);
+    font-weight: 500;
+    animation: hint-float 1.5s ease-in-out infinite alternate;
 }
 
-.premium-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(211, 182, 131, 0.45);
-    background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
-}
-
-.premium-btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 15px rgba(211, 182, 131, 0.3);
-}
-
-.premium-btn.w-full {
-    width: 100%;
-    display: block;
-    text-align: center;
+@keyframes hint-float {
+    0% { opacity: 0.55; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(-4px); }
 }
 
 /* -------------------------------------------------------------
@@ -283,9 +381,9 @@ h1, h2, h3, h4 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: var(--primary-red);
-    border: 2px solid var(--gold);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    background-color: var(--bg-cream);
+    border: 2px solid var(--primary-gold);
+    box-shadow: 0 5px 20px var(--shadow-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -295,7 +393,7 @@ h1, h2, h3, h4 {
 
 .audio-control:hover {
     transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(211, 182, 131, 0.4);
+    box-shadow: 0 8px 25px rgba(197, 168, 128, 0.3);
 }
 
 .audio-control.hidden {
@@ -311,13 +409,13 @@ h1, h2, h3, h4 {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    opacity: 0.25;
+    opacity: 0.15;
 }
 
 .audio-waves span {
     width: 3px;
     height: 100%;
-    background-color: var(--gold-light);
+    background-color: var(--primary-gold);
     border-radius: 3px;
     transform-origin: bottom center;
 }
@@ -360,7 +458,7 @@ section {
     justify-content: center;
     align-items: center;
     position: relative;
-    background: transparent; /* All sections are transparent to show unified background */
+    background: transparent;
 }
 
 /* Scroll Reveal */
@@ -376,7 +474,7 @@ section {
 }
 
 /* -------------------------------------------------------------
-   UNIFIED PREMIUM GLASSMORPHISM PANELS (Cohesive Cards)
+   UNIFIED LUXURY LIGHT LINEN PANELS (Cohesive Cards)
 ------------------------------------------------------------- */
 .card-glass-panel,
 .verse-container,
@@ -385,30 +483,20 @@ section {
 .location-card,
 .rsvp-form-container,
 .guestbook-container {
-    background: rgba(62, 12, 12, 0.68); /* Luxurious crimson-burgundy glass */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 2px solid var(--gold);
+    background: rgba(255, 253, 249, 0.9); /* Premium warm linen paper background */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--primary-gold);
     border-radius: var(--border-radius-lg);
     padding: 60px 40px;
     width: 100%;
     position: relative;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4), inset 0 0 25px rgba(211, 182, 131, 0.12);
-    color: var(--text-light);
-    transition: box-shadow 0.5s ease;
+    box-shadow: 0 15px 40px var(--shadow-color), inset 0 0 15px rgba(197, 168, 128, 0.05);
+    color: var(--text-dark);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
-.card-glass-panel:hover,
-.verse-container:hover,
-.details-card:hover,
-.countdown-card:hover,
-.location-card:hover,
-.rsvp-form-container:hover,
-.guestbook-container:hover {
-    box-shadow: 0 20px 55px rgba(211, 182, 131, 0.15), inset 0 0 25px rgba(211, 182, 131, 0.15);
-}
-
-/* Double gold borders inside all panels */
+/* Double gold borders inside all linen panels */
 .card-glass-panel::after,
 .verse-container::after,
 .details-card::after,
@@ -422,13 +510,13 @@ section {
     left: 8px;
     right: 8px;
     bottom: 8px;
-    border: 1px solid var(--gold);
+    border: 1px solid var(--primary-gold);
     border-radius: inherit;
     opacity: 0.45;
     pointer-events: none;
 }
 
-/* Arched Card exception styling for the Invitation card */
+/* Arched Card layout style for the main invitation insert */
 .card-glass-panel {
     border-radius: 120px 120px 24px 24px;
 }
@@ -445,15 +533,15 @@ section {
 .hero-arch-container {
     width: 100%;
     max-width: 600px;
-    border: 2px solid var(--gold);
+    border: 1.5px solid var(--primary-gold);
     border-radius: 180px 180px 30px 30px;
     padding: 80px 40px;
     text-align: center;
     position: relative;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(211, 182, 131, 0.15);
-    background-color: rgba(62, 12, 12, 0.65);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 50px var(--shadow-color);
+    background: rgba(255, 253, 249, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .hero-arch-container::after {
@@ -463,7 +551,7 @@ section {
     left: 8px;
     right: 8px;
     bottom: 8px;
-    border: 1px solid var(--gold);
+    border: 1px solid var(--primary-gold);
     border-radius: inherit;
     opacity: 0.5;
     pointer-events: none;
@@ -473,9 +561,9 @@ section {
     position: absolute;
     width: 25px;
     height: 25px;
-    border-color: var(--gold);
+    border-color: var(--primary-gold);
     border-style: solid;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .corner-decor.top-left { top: 15px; left: 15px; border-width: 1.5px 0 0 1.5px; border-top-left-radius: 5px; }
@@ -484,10 +572,11 @@ section {
 .corner-decor.bottom-right { bottom: 15px; right: 15px; border-width: 0 1.5px 1.5px 0; border-bottom-right-radius: 5px; }
 
 .section-badge {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 5px;
-    color: var(--gold);
+    font-family: var(--font-serif);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: var(--gold-dark);
     margin-bottom: 20px;
     text-transform: uppercase;
 }
@@ -495,10 +584,9 @@ section {
 .hero-greeting {
     font-family: var(--font-heading);
     font-size: 2rem;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     margin-bottom: 20px;
     font-weight: 500;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 .hero-desc {
@@ -520,9 +608,8 @@ section {
     font-family: var(--font-script);
     font-size: 3.5rem;
     font-weight: 400;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     line-height: 1.1;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 .hero-connector {
@@ -536,9 +623,9 @@ section {
 .hero-connector span {
     font-family: var(--font-accent);
     font-size: 1rem;
-    color: var(--gold);
+    color: var(--primary-gold);
     font-style: italic;
-    background-color: #3E0C0C;
+    background-color: var(--bg-cream);
     padding: 0 15px;
     z-index: 2;
 }
@@ -548,7 +635,7 @@ section {
     position: absolute;
     width: 60px;
     height: 1px;
-    background-color: rgba(211, 182, 131, 0.35);
+    background-color: rgba(197, 168, 128, 0.35);
     z-index: 1;
 }
 
@@ -562,7 +649,7 @@ section {
     font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 500;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     letter-spacing: 2px;
     margin-bottom: 8px;
 }
@@ -588,14 +675,14 @@ section {
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--gold);
+    color: var(--primary-gold);
 }
 
 .arrow-down {
     width: 12px;
     height: 12px;
-    border-bottom: 2px solid var(--gold);
-    border-right: 2px solid var(--gold);
+    border-bottom: 2px solid var(--primary-gold);
+    border-right: 2px solid var(--primary-gold);
     transform: rotate(45deg);
     animation: pulse-arrow 1.8s infinite alternate;
 }
@@ -625,17 +712,17 @@ section {
 }
 
 .quran-icon-decor svg {
-    filter: drop-shadow(0 4px 10px rgba(211, 182, 131, 0.2));
+    filter: drop-shadow(0 2px 6px rgba(197, 168, 128, 0.25));
 }
 
 .arabic-verse {
     font-family: var(--font-arabic);
     font-size: 1.9rem;
     line-height: 2.1;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     margin-bottom: 30px;
     direction: rtl;
-    text-shadow: 0 0 10px rgba(243, 229, 208, 0.25);
+    text-shadow: 0 0 1px rgba(142, 112, 71, 0.1);
 }
 
 .english-verse {
@@ -643,17 +730,18 @@ section {
     font-size: 1.05rem;
     font-style: italic;
     line-height: 1.8;
-    color: var(--text-light);
+    color: var(--text-dark);
     margin-bottom: 20px;
     font-weight: 300;
 }
 
 .verse-reference {
+    font-family: var(--font-serif);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: var(--gold);
+    color: var(--primary-gold);
 }
 
 /* -------------------------------------------------------------
@@ -668,19 +756,20 @@ section {
     width: 60px;
     height: 40px;
     margin: 0 auto 30px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Cpath d='M50,0 C20,20 20,60 20,60 L80,60 C80,60 80,20 50,0 Z' fill='none' stroke='%23D3B683' stroke-width='2.5'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Cpath d='M50,0 C20,20 20,60 20,60 L80,60 C80,60 80,20 50,0 Z' fill='none' stroke='%23C5A880' stroke-width='2'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
 .invitation-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-serif);
     font-size: 1.35rem;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     margin-bottom: 25px;
     font-weight: 500;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .invitation-message {
@@ -700,11 +789,9 @@ section {
 .person-name {
     font-family: var(--font-script);
     font-size: 3.2rem;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     font-weight: 400;
     margin-bottom: 12px;
-    letter-spacing: 1px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     line-height: 1.1;
 }
 
@@ -715,10 +802,11 @@ section {
 }
 
 .parent-label {
+    font-family: var(--font-serif);
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--gold);
+    color: var(--primary-gold);
     font-weight: 500;
 }
 
@@ -726,13 +814,13 @@ section {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--text-light);
+    color: var(--text-dark);
 }
 
 .conjunction {
     font-size: 0.8rem;
     font-style: italic;
-    color: var(--gold);
+    color: var(--primary-gold);
     margin: 2px 0;
 }
 
@@ -747,7 +835,7 @@ section {
 .gold-line {
     width: 60px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
 }
 
 .heart-symbol {
@@ -758,12 +846,12 @@ section {
 }
 
 .gold-rings-svg {
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15));
 }
 
 @keyframes rings-pulse {
-    0% { transform: scale(1); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-    100% { transform: scale(1.08); filter: drop-shadow(0 4px 10px rgba(211,182,131,0.4)); }
+    0% { transform: scale(1); filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15)); }
+    100% { transform: scale(1.08); filter: drop-shadow(0 3px 8px rgba(197,168,128,0.3)); }
 }
 
 .dua-text {
@@ -771,7 +859,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.95rem;
     font-style: italic;
-    color: var(--gold);
+    color: var(--gold-dark);
     line-height: 1.6;
 }
 
@@ -800,11 +888,10 @@ section {
 .section-title {
     font-family: var(--font-heading);
     font-size: 1.6rem;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     margin-bottom: 25px;
     text-align: center;
     font-weight: 500;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .card-inner-border {
@@ -824,14 +911,13 @@ section {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid var(--gold);
+    background-color: var(--bg-cream);
+    border: 1px solid var(--primary-gold);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.25rem;
     flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(60, 53, 45, 0.08);
 }
 
 .info-text h3 {
@@ -839,7 +925,7 @@ section {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--gold);
+    color: var(--primary-gold);
     margin-bottom: 4px;
     font-weight: 600;
 }
@@ -847,7 +933,7 @@ section {
 .info-text .highlight-val {
     font-family: var(--font-heading);
     font-size: 1.15rem;
-    color: var(--text-light);
+    color: var(--text-dark);
     font-weight: 500;
     margin-bottom: 2px;
 }
@@ -888,7 +974,7 @@ section {
 .timer-num {
     font-family: var(--font-heading);
     font-size: 2.2rem;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     font-weight: 600;
     line-height: 1.2;
 }
@@ -897,7 +983,7 @@ section {
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--gold);
+    color: var(--primary-gold);
     margin-top: 5px;
     font-weight: 500;
 }
@@ -905,7 +991,7 @@ section {
 .timer-sep {
     font-family: var(--font-heading);
     font-size: 1.8rem;
-    color: var(--gold);
+    color: var(--primary-gold);
     line-height: 1.2;
     transform: translateY(-8px);
 }
@@ -928,8 +1014,8 @@ section {
 }
 
 .map-preview-container {
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px dashed var(--gold);
+    background-color: var(--primary-champagne);
+    border: 1px dashed var(--primary-gold);
     border-radius: var(--border-radius-md);
     padding: 30px;
     margin-bottom: 35px;
@@ -943,7 +1029,7 @@ section {
     position: relative;
     width: 70px;
     height: 70px;
-    background-color: rgba(211, 182, 131, 0.12);
+    background-color: rgba(197, 168, 128, 0.12);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -952,7 +1038,6 @@ section {
 }
 
 .map-pin {
-    font-size: 2rem;
     z-index: 2;
 }
 
@@ -969,7 +1054,7 @@ section {
     position: absolute;
     width: 60px;
     height: 60px;
-    border: 1.5px solid var(--gold);
+    border: 1.5px solid var(--primary-gold);
     border-radius: 50%;
     animation: radar-pulse 2s infinite ease-out;
 }
@@ -982,7 +1067,7 @@ section {
 .venue-address h3 {
     font-family: var(--font-heading);
     font-size: 1.15rem;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     margin-bottom: 5px;
     font-weight: 500;
 }
@@ -999,6 +1084,43 @@ section {
 .inline-flex {
     display: inline-flex;
     align-items: center;
+}
+
+/* Premium Button (Golden) */
+.premium-btn {
+    position: relative;
+    background: linear-gradient(135deg, var(--gold-dark), var(--primary-gold), var(--gold-dark));
+    color: var(--bg-cream);
+    border: none;
+    padding: 14px 35px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(60, 53, 45, 0.15), inset 0 2px 2px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    z-index: 5;
+    text-decoration: none;
+}
+
+.premium-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(197, 168, 128, 0.35);
+    background: linear-gradient(135deg, var(--primary-gold), var(--gold-light), var(--primary-gold));
+}
+
+.premium-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(197, 168, 128, 0.2);
+}
+
+.premium-btn.w-full {
+    width: 100%;
+    display: block;
+    text-align: center;
 }
 
 /* -------------------------------------------------------------
@@ -1029,7 +1151,7 @@ section {
     margin-bottom: 30px;
 }
 
-/* Form inputs matching dark glassmorphism */
+/* Form inputs matching textured light paper */
 .premium-form {
     display: flex;
     flex-direction: column;
@@ -1049,11 +1171,12 @@ section {
 }
 
 .form-group label {
+    font-family: var(--font-serif);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: var(--gold);
+    color: var(--primary-gold);
 }
 
 .form-group input, 
@@ -1061,10 +1184,10 @@ section {
 .form-group textarea {
     width: 100%;
     padding: 12px 16px;
-    border: 1px solid rgba(211, 182, 131, 0.3);
-    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(197, 168, 128, 0.35);
+    background-color: var(--bg-cream);
     border-radius: var(--border-radius-sm);
-    color: var(--text-light);
+    color: var(--text-dark);
     font-family: var(--font-body);
     font-size: 0.85rem;
     transition: all 0.3s ease;
@@ -1072,21 +1195,20 @@ section {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(60, 53, 45, 0.35);
 }
 
 .form-group input:focus, 
 .form-group select:focus, 
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--gold-light);
-    background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 0 0 0 3px rgba(243, 229, 208, 0.15);
+    border-color: var(--gold-dark);
+    box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.15);
 }
 
 .form-group select option {
-    background-color: #3E0C0C;
-    color: var(--text-light);
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
 }
 
 /* Guestbook Board */
@@ -1104,28 +1226,28 @@ section {
 }
 
 .wishes-board::-webkit-scrollbar-track {
-    background: rgba(211, 182, 131, 0.05);
+    background: rgba(197, 168, 128, 0.05);
     border-radius: 10px;
 }
 
 .wishes-board::-webkit-scrollbar-thumb {
-    background: var(--gold-dark);
+    background: var(--primary-gold);
     border-radius: 10px;
 }
 
 .wishes-board::-webkit-scrollbar-thumb:hover {
-    background: var(--gold);
+    background: var(--gold-dark);
 }
 
 .wish-item {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-left: 3px solid var(--gold);
-    border-top: 1px solid rgba(211, 182, 131, 0.1);
-    border-right: 1px solid rgba(211, 182, 131, 0.1);
-    border-bottom: 1px solid rgba(211, 182, 131, 0.1);
+    background-color: var(--bg-cream);
+    border-left: 3px solid var(--primary-gold);
+    border-top: 1px solid rgba(197, 168, 128, 0.12);
+    border-right: 1px solid rgba(197, 168, 128, 0.12);
+    border-bottom: 1px solid rgba(197, 168, 128, 0.12);
     padding: 15px;
     border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(60,53,45,0.02);
     animation: fade-in-wish 0.5s ease-out;
 }
 
@@ -1155,7 +1277,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--gold-light);
+    color: var(--gold-dark);
 }
 
 .wish-status {
@@ -1168,21 +1290,21 @@ section {
 }
 
 .wish-status.attending {
-    background-color: rgba(243, 229, 208, 0.12);
-    color: var(--gold-light);
-    border: 0.5px solid rgba(243, 229, 208, 0.25);
+    background-color: rgba(197, 168, 128, 0.1);
+    color: var(--gold-dark);
+    border: 0.5px solid rgba(197, 168, 128, 0.2);
 }
 
 .wish-status.absent {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: rgba(255, 255, 255, 0.4);
-    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    background-color: rgba(60, 53, 45, 0.05);
+    color: rgba(60, 53, 45, 0.5);
+    border: 0.5px solid rgba(60, 53, 45, 0.15);
 }
 
 .wish-text {
     font-size: 0.8rem;
     line-height: 1.6;
-    color: var(--text-muted);
+    color: var(--text-dark);
     font-style: italic;
     white-space: pre-wrap;
 }
@@ -1191,10 +1313,10 @@ section {
    FOOTER SECTION
 ------------------------------------------------------------- */
 .main-footer {
-    background-color: rgba(30, 5, 5, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(211, 182, 131, 0.3);
+    background-color: rgba(244, 239, 230, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(197, 168, 128, 0.35);
     position: relative;
     overflow: hidden;
     padding: 80px 20px;
@@ -1207,7 +1329,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0l40 40-40 40L0 40z' fill='none' stroke='%23D3B683' stroke-width='0.5' stroke-opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0l40 40-40 40L0 40z' fill='none' stroke='%23C5A880' stroke-width='0.5' stroke-opacity='0.04'/%3E%3C/svg%3E");
     opacity: 0.4;
     z-index: 1;
 }
@@ -1222,9 +1344,9 @@ section {
 .footer-bismillah {
     font-family: var(--font-arabic);
     font-size: 1.8rem;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     margin-bottom: 15px;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .footer-dua-trans {
@@ -1246,7 +1368,7 @@ section {
 .family-sig {
     font-family: var(--font-heading);
     font-size: 1.15rem;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     letter-spacing: 1px;
     margin-bottom: 8px;
 }
@@ -1254,39 +1376,7 @@ section {
 .thank-you {
     font-family: var(--font-accent);
     font-size: 1.35rem;
-    color: var(--gold);
+    color: var(--primary-gold);
     letter-spacing: 3px;
     text-transform: uppercase;
 }
-
-/* -------------------------------------------------------------
-   GATE COVER CARD LAYOUT
-------------------------------------------------------------- */
-.gate-cover-details {
-    margin: 30px 0 45px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.gate-title-main {
-    font-family: var(--font-script);
-    font-size: 4rem;
-    color: var(--gold-light);
-    font-weight: 400;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-    line-height: 1.1;
-    margin-bottom: 5px;
-}
-
-.gate-subtitle {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    max-width: 80%;
-    margin: 10px auto 0;
-    line-height: 1.6;
-    font-weight: 300;
-}
-
-
