@@ -545,7 +545,38 @@ section {
     position: relative;
     box-shadow: 0 15px 40px var(--shadow-color), inset 0 0 15px rgba(197, 168, 128, 0.05);
     color: var(--text-dark);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Section Card Watermarks (Blended Gradients for High Readability) */
+.verse-container {
+    background-image: linear-gradient(rgba(255, 253, 249, 0.94), rgba(255, 253, 249, 0.94)), url('assets/wedding_details.png') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.card-glass-panel {
+    background-image: linear-gradient(rgba(255, 253, 249, 0.92), rgba(255, 253, 249, 0.92)), url('assets/couple_portrait.png') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.details-card {
+    background-image: linear-gradient(rgba(255, 253, 249, 0.93), rgba(255, 253, 249, 0.93)), url('assets/bride_bouquet.png') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.rsvp-form-container {
+    background-image: linear-gradient(rgba(255, 253, 249, 0.94), rgba(255, 253, 249, 0.94)), url('assets/bride_bouquet.png') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.guestbook-container {
+    background-image: linear-gradient(rgba(255, 253, 249, 0.94), rgba(255, 253, 249, 0.94)), url('assets/wedding_details.png') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Double gold borders inside all linen panels */
