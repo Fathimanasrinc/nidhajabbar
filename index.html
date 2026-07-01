@@ -10,17 +10,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Aref+Ruqaa:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=20260701_v4">
+    <link rel="stylesheet" href="style.css?v=20260701_v5">
 </head>
 <body>
  
-    <!-- Background Video Layer -->
-    <div class="bg-video-container">
-        <video autoplay muted loop playsinline id="bgVideo">
-            <source src="assets/wedding_bg_video.mp4" type="video/mp4">
-        </video>
-        <div class="bg-video-overlay"></div>
-    </div>
+
 
     <!-- SVG Definitions for Patterns & Gradients -->
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -62,51 +56,13 @@
     <div id="welcomeGate" class="gate-overlay">
         <div class="gate-pattern"></div>
         <div class="gate-content">
-
-            <!-- CSS Interactive Envelope -->
-            <div class="envelope-wrapper">
-                <div class="envelope" id="envelope">
-                    <!-- Envelope Back Frame -->
-                    <div class="envelope-back"></div>
-                    
-                    <!-- Peeking Card Slide Insert -->
-                    <div class="envelope-paper">
-                        <div class="bismillah-container-mini">
-                            <p class="bismillah-arabic-mini">بِسْمِ اللَّهِ</p>
-                        </div>
-                        <p class="paper-text">You are Invited</p>
-                    </div>
-                    
-                    <!-- Envelope Front Folds -->
-                    <div class="envelope-left"></div>
-                    <div class="envelope-right"></div>
-                    <div class="envelope-bottom"></div>
-                    
-                    <!-- Envelope Top Flap (folds down to close, opens up) -->
-                    <div class="envelope-top-flap"></div>
-                    
-                    <!-- Circular Swan Wax Seal -->
-                    <button class="wax-seal" id="waxSeal" aria-label="Open the invitation">
-                        <svg class="wax-swan-svg" viewBox="0 0 64 64" width="30" height="30">
-                            <!-- Custom elegant oval floral stem seal crest -->
-                            <path d="M32 16c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm0 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm-8 10c0 4.4 3.6 8 8 8s8-3.6 8-8v-3H24v3zm8 10c-5.5 0-10-4.5-10-10v-5h20v5c0 5.5-4.5 10-10 10z" fill="rgba(60, 53, 45, 0.45)" />
-                            <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(251, 249, 246, 0.3)" stroke-width="1" />
-                        </svg>
-                    </button>
-                    
-                    <!-- Highly Stable Text Overlays Layered on the Envelope Face -->
-                    <div class="envelope-labels">
-                        <div class="envelope-label-top">
-                            <p class="envelope-header">A Love Letter From</p>
-                            <h2 class="envelope-names">Nidha &amp; Shaheen</h2>
-                        </div>
-                        <div class="envelope-label-bottom">
-                            <p class="envelope-prompt">Open the Invitation</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Invisible click target with gold pulsing ring overlaying the printed red wax seal -->
+            <button class="wax-seal-click-target" id="waxSeal" aria-label="Open the invitation"></button>
             
+            <!-- Footer indicator -->
+            <div class="gate-footer">
+                <p class="open-label-hint">Click the Wax Seal to Open</p>
+            </div>
         </div>
     </div>
 
@@ -471,6 +427,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="app.js?v=20260701_v4"></script>
+    <script src="app.js?v=20260701_v5"></script>
 </body>
 </html>

@@ -10,13 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const rsvpForm = document.getElementById("rsvpForm");
     const wishesBoard = document.getElementById("wishesBoard");
 
-    // --- 1. Envelope Open Gate Unlock & Music Play ---
-    if (waxSeal && envelope) {
+    // --- 1. Gate Unlock & Music Play ---
+    if (waxSeal) {
         waxSeal.addEventListener("click", () => {
-            // Fold flap open and peek card
-            envelope.classList.add("open");
+            // Add a small scale/press feedback effect to the seal
+            waxSeal.style.transform = "translate(-50%, -50%) scale(0.9)";
             
-            // Wait for 3D unfold animation to complete before sliding away cover gate
             setTimeout(() => {
                 // Unlock main scroll
                 mainContent.classList.remove("hidden-scroll");
@@ -37,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     welcomeGate.style.display = "none";
                 }, 1500);
-            }, 1200);
+            }, 300); // Responsive 300ms click feedback delay
         });
     }
 
