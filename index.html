@@ -54,12 +54,6 @@
     <div id="welcomeGate" class="gate-overlay">
         <div class="gate-pattern"></div>
         <div class="gate-content">
-            
-            <!-- Invitation Cover Details (Above Envelope) -->
-            <div class="gate-intro-container">
-                <p class="gate-header-tag">A Love Letter to Forever</p>
-                <h1 class="couple-names-gate">Nidha &amp; Shaheen</h1>
-            </div>
 
             <!-- CSS Interactive Envelope -->
             <div class="envelope-wrapper">
@@ -81,21 +75,25 @@
                     <div class="envelope-bottom"></div>
                     
                     <!-- Envelope Top Flap (folds down to close, opens up) -->
-                    <div class="envelope-top-flap"></div>
+                    <div class="envelope-top-flap">
+                        <div class="flap-text-container">
+                            <p class="flap-header">A Love Letter From</p>
+                            <h2 class="flap-names">Nidha &amp; Shaheen</h2>
+                        </div>
+                    </div>
                     
                     <!-- Circular Swan Wax Seal -->
                     <button class="wax-seal" id="waxSeal" aria-label="Open the invitation">
                         <svg class="wax-swan-svg" viewBox="0 0 64 64" width="30" height="30">
-                            <path d="M42 20c-1.5 0-3 1.2-3.5 2.5-.5 1.5.2 2.5 1.5 3 2.5.8 4 1.8 3.5 3.5-.8 2.5-5 5.5-8 5.5-5 0-7-4.5-5.5-8 1.2-2.8 4-5.5 5.5-8 1-1.8 0-3.5-2.5-3.5-4.5 0-9 5.5-12.5 11C17 31 16 36 18.5 40c2 3.5 6.5 5 11 5 11 0 19-7 19.5-15 .5-7-2.5-10-7-10z" fill="rgba(60, 53, 45, 0.45)" />
+                            <!-- Custom elegant oval floral stem seal crest -->
+                            <path d="M32 16c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm0 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm-8 10c0 4.4 3.6 8 8 8s8-3.6 8-8v-3H24v3zm8 10c-5.5 0-10-4.5-10-10v-5h20v5c0 5.5-4.5 10-10 10z" fill="rgba(60, 53, 45, 0.45)" />
                             <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(251, 249, 246, 0.3)" stroke-width="1" />
                         </svg>
                     </button>
+                    
+                    <!-- Front Cover Text Overlay -->
+                    <p class="envelope-open-text">Open the Invitation</p>
                 </div>
-            </div>
-
-            <!-- Footer indicator -->
-            <div class="gate-footer">
-                <p class="open-label-hint">Click the Wax Seal to Open</p>
             </div>
             
         </div>
@@ -128,6 +126,11 @@
                         <span>and</span>
                     </div>
                     <h1 class="hero-groom">Shaheen Muhammed .T</h1>
+                </div>
+
+                <!-- Arched Painting Frame -->
+                <div class="hero-image-frame">
+                    <img src="assets/couple_portrait.png" alt="Nidha & Shaheen Portrait">
                 </div>
 
                 <div class="islamic-divider-container">
@@ -295,6 +298,50 @@
                     </div>
                 </div>
                 
+            </div>
+        </section>
+
+        <!-- Captured Moments Gallery -->
+        <section id="gallery" class="gallery-section scroll-reveal">
+            <div class="gallery-container">
+                <p class="section-badge">Captured Moments</p>
+                <h2 class="section-title">Our Love Story</h2>
+                
+                <div class="islamic-divider-container" style="margin-top: 15px; margin-bottom: 45px;">
+                    <svg class="islamic-divider" viewBox="0 0 200 30" width="150" height="25">
+                        <path d="M0,15 L85,15" stroke="url(#goldGradient)" stroke-width="1.5" />
+                        <g transform="translate(100, 15) scale(0.8)">
+                            <rect x="-8" y="-8" width="16" height="16" fill="url(#goldGradient)" transform="rotate(45)" />
+                        </g>
+                        <path d="M115,15 L200,15" stroke="url(#goldGradient)" stroke-width="1.5" />
+                    </svg>
+                </div>
+
+                <div class="gallery-grid">
+                    <!-- Polaroid Card 1 -->
+                    <div class="polaroid-frame">
+                        <div class="polaroid-img-wrap">
+                            <img src="assets/couple_portrait.png" alt="Together in Faith">
+                        </div>
+                        <div class="polaroid-caption">Together in Faith</div>
+                    </div>
+                    
+                    <!-- Polaroid Card 2 -->
+                    <div class="polaroid-frame">
+                        <div class="polaroid-img-wrap">
+                            <img src="assets/bride_bouquet.png" alt="Blooming Blessings">
+                        </div>
+                        <div class="polaroid-caption">Blooming Blessings</div>
+                    </div>
+                    
+                    <!-- Polaroid Card 3 -->
+                    <div class="polaroid-frame">
+                        <div class="polaroid-img-wrap">
+                            <img src="assets/wedding_details.png" alt="Symbol of Union">
+                        </div>
+                        <div class="polaroid-caption">Symbol of Union</div>
+                    </div>
+                </div>
             </div>
         </section>
 
