@@ -238,4 +238,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial Wishes Render
     renderWishes();
+
+    // --- 9. Scroll-Linked Background Video Play/Pause Control ---
+    let scrollTimeout;
+    const bgVideo = document.getElementById("bgVideo");
+
+    window.addEventListener("scroll", () => {
+        // Only trigger scroll control if the gate has been unlocked (slid up)
+        if (welcomeGate && welcomeGate.classList.contains("slide-up") && bgVideo) {
+            // Clear any active pause timer
+            clearTimeout(scrollTimeout);
+            
+            // Play video if currently paused
+            if (bgVideo.paused) {
+                bgVideo.play().catch(err => {
+                    console.log("Playback deferred:", err);
+                });
+            }
+            
+            // Queue a pause action after 250ms of scrolling pause
+            scrollTimeout = setTimeout(() => {
+                if (!bgVideo.paused) {
+                    bgVideo.pause();
+                }
+            }, 250);
+        }
+    }, { passive: true });
 });
