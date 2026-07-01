@@ -38,13 +38,13 @@ html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
     color: var(--text-dark);
-    background-color: var(--primary-champagne);
+    background: transparent;
     overflow-x: hidden;
 }
 
 body {
     min-height: 100vh;
-    background-color: var(--primary-champagne);
+    background: transparent;
     position: relative;
 }
 
