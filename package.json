@@ -1,0 +1,8 @@
+{
+  "name": "wedding-invitation",
+  "version": "1.0.0",
+  "description": "Premium Islamic Wedding Invitation Website",
+  "scripts": {
+    "dev": "npx -y serve ."
+  }
+}

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Nidha & Shaheen</title>
+    <meta name="description" content="Wedding invitation for the reception of Nidha Jabbar CK and Shaheen Muhammed .T on July 19, 2026. Join us in our celebration.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Aref+Ruqaa:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SVG Definitions for Patterns & Gradients -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#C5A880" />
+                <stop offset="30%" stop-color="#F3E5D0" />
+                <stop offset="70%" stop-color="#D3B683" />
+                <stop offset="100%" stop-color="#A68050" />
+            </linearGradient>
+            <linearGradient id="goldGradientHorizontal" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#A68050" />
+                <stop offset="50%" stop-color="#F3E5D0" />
+                <stop offset="100%" stop-color="#A68050" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Audio Control -->
+    <button id="audioToggle" class="audio-control hidden" aria-label="Toggle Background Music">
+        <span class="audio-waves">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <svg class="music-icon" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" fill="url(#goldGradient)" />
+        </svg>
+    </button>
+
+    <!-- 1. SPLASH / COVER GATE -->
+    <div id="welcomeGate" class="gate-overlay">
+        <div class="gate-pattern"></div>
+        <div class="gate-content">
+            <!-- Arch Frame -->
+            <div class="gate-frame">
+                <div class="lantern-wrapper left">
+                    <svg class="lantern" viewBox="0 0 40 100" width="30" height="75">
+                        <path d="M20,0 L20,30 M10,30 L30,30 L35,50 L20,70 L5,50 Z M15,50 L25,50 M20,70 L20,85 M10,85 L30,85 L20,100 Z" stroke="url(#goldGradient)" stroke-width="1.5" fill="none" />
+                        <circle cx="20" cy="50" r="3" fill="url(#goldGradient)" />
+                    </svg>
+                </div>
+                <div class="lantern-wrapper right">
+                    <svg class="lantern" viewBox="0 0 40 100" width="30" height="75">
+                        <path d="M20,0 L20,30 M10,30 L30,30 L35,50 L20,70 L5,50 Z M15,50 L25,50 M20,70 L20,85 M10,85 L30,85 L20,100 Z" stroke="url(#goldGradient)" stroke-width="1.5" fill="none" />
+                        <circle cx="20" cy="50" r="3" fill="url(#goldGradient)" />
+                    </svg>
+                </div>
+
+                <div class="bismillah-container">
+                    <p class="bismillah-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                    <p class="bismillah-translation">In the Name of Allah, the Most Gracious, the Most Merciful</p>
+                </div>
+
+                <h3 class="gate-intro-text">THE WEDDING INVITATION</h3>
+                
+                <div class="scratch-card-container">
+                    <div class="scratch-revealed-content">
+                        <h1 class="couple-names-gate">
+                            <span class="bride-name">Nidha Jabbar</span>
+                            <span class="ampersand">&amp;</span>
+                            <span class="groom-name">Shaheen Muhammed</span>
+                        </h1>
+
+                        <div class="gate-divider">
+                            <svg class="divider-svg" viewBox="0 0 200 20" width="150">
+                                <path d="M0,10 L85,10 M115,10 L200,10" stroke="url(#goldGradient)" stroke-width="1.5" />
+                                <g transform="translate(100, 10)">
+                                    <rect x="-6" y="-6" width="12" height="12" fill="url(#goldGradient)" transform="rotate(45)" />
+                                </g>
+                            </svg>
+                        </div>
+
+                        <p class="gate-date">19 . 07 . 2026</p>
+                    </div>
+                    <canvas id="scratchCanvas" width="340" height="220"></canvas>
+                </div>
+
+                <p id="scratchHint" class="scratch-hint">✨ Scratch or swipe above to reveal names ✨</p>
+                
+                <button id="openInviteBtn" class="premium-btn hidden-btn">Open Invitation</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER (revealed after gate opens) -->
+    <div id="mainContent" class="main-wrapper hidden-scroll">
+        
+        <!-- Background elements -->
+        <div class="bg-pattern-overlay"></div>
+
+        <!-- 2. HERO / HOME SECTION -->
+        <header id="hero" class="hero-section scroll-reveal">
+            <div class="hero-arch-container">
+                <div class="corner-decor top-left"></div>
+                <div class="corner-decor top-right"></div>
+                <div class="corner-decor bottom-left"></div>
+                <div class="corner-decor bottom-right"></div>
+
+                <p class="section-badge">WEDDING RECEPTION</p>
+                
+                <h2 class="hero-greeting">Assalamu Alaikum</h2>
+                
+                <p class="hero-desc">We request the honor of your presence to celebrate the union of love, faith, and families.</p>
+
+                <!-- Couple Typography -->
+                <div class="hero-names-container">
+                    <h1 class="hero-bride">Nidha Jabbar CK</h1>
+                    <div class="hero-connector">
+                        <span>and</span>
+                    </div>
+                    <h1 class="hero-groom">Shaheen Muhammed .T</h1>
+                </div>
+
+                <div class="islamic-divider-container">
+                    <svg class="islamic-divider" viewBox="0 0 200 30" width="200" height="30">
+                        <path d="M0,15 L85,15" stroke="url(#goldGradient)" stroke-width="1.5" />
+                        <g transform="translate(100, 15) scale(0.8)">
+                            <rect x="-10" y="-10" width="20" height="20" fill="url(#goldGradient)" transform="rotate(0)" />
+                            <rect x="-10" y="-10" width="20" height="20" fill="url(#goldGradient)" transform="rotate(45)" />
+                            <circle cx="0" cy="0" r="4" fill="#7A1C1C" />
+                        </g>
+                        <path d="M115,15 L200,15" stroke="url(#goldGradient)" stroke-width="1.5" />
+                    </svg>
+                </div>
+
+                <p class="hero-date-text">Sunday, 19 July 2026</p>
+                <p class="hero-venue-text">Metro Auditorium Aravankara</p>
+
+                <div class="scroll-down-indicator">
+                    <span>Scroll to Explore</span>
+                    <div class="arrow-down"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 3. HOLY QURAN VERSE SECTION -->
+        <section id="quran-verse" class="verse-section scroll-reveal">
+            <div class="verse-container">
+                <div class="quran-icon-decor">
+                    <svg viewBox="0 0 64 64" width="50" height="50">
+                        <path d="M32 4 L44 16 L60 20 L52 32 L60 44 L44 48 L32 60 L20 48 L4 44 L12 32 L4 20 L20 16 Z" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
+                        <circle cx="32" cy="32" r="12" fill="url(#goldGradient)" />
+                        <path d="M28 32 L36 32 M32 28 L32 36" stroke="#7A1C1C" stroke-width="2" />
+                    </svg>
+                </div>
+                
+                <p class="arabic-verse">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
+                
+                <p class="english-verse">"And among His Signs is this, that He created for you mates from among yourselves, that ye may dwell in tranquillity with them, and He has put love and mercy between your hearts: verily in that are Signs for those who reflect."</p>
+                
+                <p class="verse-reference">Surah Ar-Rum [30:21]</p>
+            </div>
+        </section>
+
+        <!-- 4. PARENTS & INVITATION CARD -->
+        <section id="invitation" class="invitation-section scroll-reveal">
+            <div class="card-glass-panel">
+                <div class="arch-top-decor"></div>
+                
+                <h3 class="invitation-title">With the Grace of Almighty Allah</h3>
+                
+                <p class="invitation-message">
+                    We cordially invite you to share our happiness and witness the wedding reception of our beloved daughter:
+                </p>
+
+                <!-- Bride Details -->
+                <div class="person-card">
+                    <h2 class="person-name">Nidha Jabbar CK</h2>
+                    <div class="parents-block">
+                        <p class="parent-label">Daughter of</p>
+                        <p class="father-name">Abdul Jabbar. CK</p>
+                        <p class="conjunction">&amp;</p>
+                        <p class="mother-name">Shahina PT</p>
+                    </div>
+                </div>
+
+                <div class="union-heart">
+                    <span class="gold-line"></span>
+                    <span class="heart-symbol">
+                        <svg class="gold-rings-svg" viewBox="0 0 60 30" width="50" height="25" style="vertical-align: middle;">
+                            <circle cx="20" cy="15" r="11" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
+                            <circle cx="36" cy="15" r="11" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
+                            <polygon points="17,7 20,3 23,7" fill="url(#goldGradient)" />
+                        </svg>
+                    </span>
+                    <span class="gold-line"></span>
+                </div>
+
+                <!-- Groom Details -->
+                <div class="person-card">
+                    <h2 class="person-name">Shaheen Muhammed .T</h2>
+                    <div class="parents-block">
+                        <p class="parent-label">To Groom</p>
+                        <p class="groom-parents">Son of the family</p>
+                    </div>
+                </div>
+
+                <p class="dua-text">May Allah bless this union and keep them steadfast in love and faith.</p>
+            </div>
+        </section>
+
+        <!-- 5. EVENT DETAILS & COUNTDOWN -->
+        <section id="event-details" class="event-section scroll-reveal">
+            <div class="event-grid">
+                
+                <!-- Main Event Card -->
+                <div class="details-card">
+                    <div class="card-inner-border">
+                        <h2 class="section-title">Bride-side Reception</h2>
+                        
+                        <div class="detail-row">
+                            <div class="icon-wrap">
+                                <svg viewBox="0 0 24 24" width="20" height="20">
+                                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5v-5z" fill="url(#goldGradient)" />
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <h3>Date</h3>
+                                <p class="highlight-val">Sunday, 19 July 2026</p>
+                                <p class="sub-val">04 Safar 1448 AH</p>
+                            </div>
+                        </div>
+
+                        <div class="detail-row">
+                            <div class="icon-wrap">
+                                <svg viewBox="0 0 24 24" width="20" height="20">
+                                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="url(#goldGradient)" />
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <h3>Time</h3>
+                                <p class="highlight-val">10:00 AM to 03:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="detail-row">
+                            <div class="icon-wrap">
+                                <svg viewBox="0 0 24 24" width="20" height="20">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="url(#goldGradient)" />
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <h3>Venue</h3>
+                                <p class="highlight-val">Metro Auditorium Aravankara</p>
+                                <p class="sub-val">Aravankara, Malappuram, Kerala</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Countdown Card -->
+                <div class="countdown-card">
+                    <h2 class="section-title">Counting the Days</h2>
+                    <p class="countdown-subtitle">Until the blessed day begins, Insha'Allah</p>
+                    
+                    <div id="countdownTimer" class="timer-container">
+                        <div class="timer-item">
+                            <span id="days" class="timer-num">00</span>
+                            <span class="timer-label">Days</span>
+                        </div>
+                        <div class="timer-sep">:</div>
+                        <div class="timer-item">
+                            <span id="hours" class="timer-num">00</span>
+                            <span class="timer-label">Hours</span>
+                        </div>
+                        <div class="timer-sep">:</div>
+                        <div class="timer-item">
+                            <span id="minutes" class="timer-num">00</span>
+                            <span class="timer-label">Minutes</span>
+                        </div>
+                        <div class="timer-sep">:</div>
+                        <div class="timer-item">
+                            <span id="seconds" class="timer-num">00</span>
+                            <span class="timer-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- 6. LOCATION & MAPS -->
+        <section id="location" class="location-section scroll-reveal">
+            <div class="location-card">
+                <h2 class="section-title">Venue Location</h2>
+                <p class="location-description">We look forward to welcoming you. Click below to view the location on Google Maps or navigate to Metro Auditorium Aravankara.</p>
+                
+                <div class="map-preview-container">
+                    <!-- Clean illustrative Map icon outline or styled card -->
+                    <div class="map-visual">
+                        <svg viewBox="0 0 24 24" width="36" height="36" class="map-pin animate-bounce" style="position: relative; z-index: 2;">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="url(#goldGradient)" />
+                        </svg>
+                        <div class="radar-pulse"></div>
+                    </div>
+                    <div class="venue-address">
+                        <h3>Metro Auditorium Aravankara</h3>
+                        <p>Aravankara, Malappuram, Kerala, India</p>
+                    </div>
+                </div>
+
+                <a href="https://share.google/HXQa8DXbVYjMsTNyQ" target="_blank" rel="noopener noreferrer" class="premium-btn text-center inline-flex">
+                    <svg viewBox="0 0 24 24" width="20" height="20" class="mr-2">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+                    </svg>
+                    Navigate to Venue
+                </a>
+            </div>
+        </section>
+
+        <!-- 7. RSVP & DUAS GUESTBOOK -->
+        <section id="rsvp" class="rsvp-section scroll-reveal">
+            <div class="rsvp-grid">
+                
+                <!-- RSVP Form -->
+                <div class="rsvp-form-container">
+                    <h2 class="section-title">RSVP & Blessings</h2>
+                    <p class="rsvp-subtitle">Please let us know if you can attend and leave your prayers (Duas) for the new couple.</p>
+                    
+                    <form id="rsvpForm" class="premium-form">
+                        <div class="form-group">
+                            <label for="guestName">Your Full Name</label>
+                            <input type="text" id="guestName" required placeholder="e.g. Muhammed Ali">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="attendance">Will You Attend?</label>
+                                <select id="attendance" required>
+                                    <option value="" disabled selected>Select Attendance</option>
+                                    <option value="yes">Yes, Insya'Allah</option>
+                                    <option value="no">No, unfortunately</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="guestCount">Number of Guests</label>
+                                <select id="guestCount">
+                                    <option value="1">1 Person</option>
+                                    <option value="2">2 Persons</option>
+                                    <option value="3">3 Persons</option>
+                                    <option value="4">4 Persons</option>
+                                    <option value="5+">5+ Persons</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duaMessage">Dua / Message for the Couple</label>
+                            <textarea id="duaMessage" rows="4" required placeholder="May Allah bless your marriage..."></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="premium-btn w-full">Send Blessings</button>
+                    </form>
+                </div>
+
+                <!-- Guestbook / Wishes Display -->
+                <div class="guestbook-container">
+                    <h2 class="section-title">Wishes & Duas</h2>
+                    <p class="rsvp-subtitle">Warm wishes from family and friends</p>
+                    
+                    <div id="wishesBoard" class="wishes-board">
+                        <!-- Dynamic list of wishes will load here -->
+                        <div class="wish-item loading">
+                            <p class="wish-text">Loading blessings...</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="main-footer">
+            <div class="footer-pattern"></div>
+            <div class="footer-content">
+                <p class="footer-bismillah">بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+                <p class="footer-dua-trans">"May Allah bless you, and shower His blessings upon you, and join you together in goodness."</p>
+                <div class="footer-accent">
+                    <svg viewBox="0 0 100 20" width="80">
+                        <path d="M0,10 L40,10 M60,10 L100,10" stroke="url(#goldGradient)" stroke-width="1.5" />
+                        <g transform="translate(50, 10)">
+                            <rect x="-4" y="-4" width="8" height="8" fill="url(#goldGradient)" transform="rotate(45)" />
+                        </g>
+                    </svg>
+                </div>
+                <p class="family-sig">Family of Abdul Jabbar. CK &amp; Shahina PT</p>
+                <p class="thank-you">Thank You</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
