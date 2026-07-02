@@ -10,14 +10,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Aref+Ruqaa:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=20260701_v10">
+    <link rel="stylesheet" href="style.css?v=20260702_v52">
 </head>
 <body>
  
     <!-- Background Video Layer -->
     <div class="bg-video-container">
-        <video muted loop playsinline id="bgVideo">
+        <!-- Hero Background Video -->
+        <video muted playsinline id="bgVideoHero" class="bg-video-el active">
             <source src="assets/wedding_bg_video.mp4" type="video/mp4">
+        </video>
+        <!-- Invitation Background Video -->
+        <video muted loop playsinline id="bgVideoInvitation" class="bg-video-el">
+            <source src="assets/WhatsApp Video 2026-07-01 at 9.02.12 PM.mp4" type="video/mp4">
         </video>
         <div class="bg-video-overlay"></div>
     </div>
@@ -43,6 +48,7 @@
 
     <!-- Background Music -->
     <audio id="bgMusic" loop preload="auto">
+        <source src="assets/WhatsApp Video 2026-07-02 at 4.34.35 PM.mp4" type="audio/mp4">
         <source src="assets/music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -60,17 +66,15 @@
         </svg>
     </button>
 
-    <!-- 1. SPLASH / COVER GATE -->
-    <div id="welcomeGate" class="gate-overlay">
-        <div class="gate-pattern"></div>
-        <div class="gate-content">
-            <!-- Invisible click target with gold pulsing ring overlaying the printed red wax seal -->
-            <button class="wax-seal-click-target" id="waxSeal" aria-label="Open the invitation"></button>
-            
-            <!-- Footer indicator -->
-            <div class="gate-footer">
-                <p class="open-label-hint">Click the Wax Seal to Open</p>
-            </div>
+    <!-- 1. SPLIT GATE (envelope image splits open from center) -->
+    <div id="welcomeGate" class="gate-overlay" aria-label="Tap to open invitation">
+        <!-- Left half of envelope image -->
+        <div class="gate-panel gate-left" id="gateLeft"></div>
+        <!-- Right half of envelope image -->
+        <div class="gate-panel gate-right" id="gateRight"></div>
+        <!-- Tap hint -->
+        <div class="gate-hint-wrap">
+            <p class="open-label-hint" id="waxSeal">Tap to Open</p>
         </div>
     </div>
 
@@ -88,17 +92,17 @@
                 <div class="corner-decor bottom-left"></div>
                 <div class="corner-decor bottom-right"></div>
 
-                <p class="section-badge">WEDDING RECEPTION</p>
-                
-                <h2 class="hero-greeting">Assalamu Alaikum</h2>
-                
-                <p class="hero-desc">We request the honor of your presence to celebrate the union of love, faith, and families.</p>
+                <div class="hero-header-container">
+                    <p class="section-badge">WEDDING RECEPTION</p>
+                    <h2 class="hero-greeting">Assalamu Alaikum</h2>
+                    <p class="hero-desc">We request the honor of your presence to celebrate the union of love, faith, and families.</p>
+                </div>
 
                 <!-- Couple Typography -->
                 <div class="hero-names-container">
                     <h1 class="hero-bride">Nidha Jabbar CK</h1>
                     <div class="hero-connector">
-                        <span>and</span>
+                        <span>&</span>
                     </div>
                     <h1 class="hero-groom">Shaheen Muhammed .T</h1>
                 </div>
@@ -106,45 +110,22 @@
 
 
                 <div class="islamic-divider-container">
-                    <svg class="islamic-divider" viewBox="0 0 200 30" width="200" height="30">
-                        <path d="M0,15 L85,15" stroke="url(#goldGradient)" stroke-width="1.5" />
-                        <g transform="translate(100, 15) scale(0.8)">
-                            <rect x="-10" y="-10" width="20" height="20" fill="url(#goldGradient)" transform="rotate(0)" />
-                            <rect x="-10" y="-10" width="20" height="20" fill="url(#goldGradient)" transform="rotate(45)" />
-                            <circle cx="0" cy="0" r="4" fill="#7A1C1C" />
-                        </g>
-                        <path d="M115,15 L200,15" stroke="url(#goldGradient)" stroke-width="1.5" />
-                    </svg>
+                   
                 </div>
 
-                <p class="hero-date-text">Sunday, 19 July 2026</p>
-                <p class="hero-venue-text">Metro Auditorium Aravankara</p>
+                <div class="hero-details-container">
+                    <p class="hero-date-text">Sunday, 19 July 2026</p>
+                    <div class="hero-details-divider"></div>
+                    <p class="hero-venue-text">Metro Auditorium Aravankara</p>
+                </div>
 
-                <div class="scroll-down-indicator">
-                    <span>Scroll to Explore</span>
+                <div class="scroll-down-indicator" aria-label="Scroll Down">
                     <div class="arrow-down"></div>
                 </div>
             </div>
         </header>
 
-        <!-- 3. HOLY QURAN VERSE SECTION -->
-        <section id="quran-verse" class="verse-section scroll-reveal">
-            <div class="verse-container">
-                <div class="quran-icon-decor">
-                    <svg viewBox="0 0 64 64" width="50" height="50">
-                        <path d="M32 4 L44 16 L60 20 L52 32 L60 44 L44 48 L32 60 L20 48 L4 44 L12 32 L4 20 L20 16 Z" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
-                        <circle cx="32" cy="32" r="12" fill="url(#goldGradient)" />
-                        <path d="M28 32 L36 32 M32 28 L32 36" stroke="#7A1C1C" stroke-width="2" />
-                    </svg>
-                </div>
-                
-                <p class="arabic-verse">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
-                
-                <p class="english-verse">"And among His Signs is this, that He created for you mates from among yourselves, that ye may dwell in tranquillity with them, and He has put love and mercy between your hearts: verily in that are Signs for those who reflect."</p>
-                
-                <p class="verse-reference">Surah Ar-Rum [30:21]</p>
-            </div>
-        </section>
+
 
         <!-- 4. PARENTS & INVITATION CARD -->
         <section id="invitation" class="invitation-section scroll-reveal">
@@ -172,9 +153,13 @@
                     <span class="gold-line"></span>
                     <span class="heart-symbol">
                         <svg class="gold-rings-svg" viewBox="0 0 60 30" width="50" height="25" style="vertical-align: middle;">
-                            <circle cx="20" cy="15" r="11" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
-                            <circle cx="36" cy="15" r="11" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
-                            <polygon points="17,7 20,3 23,7" fill="url(#goldGradient)" />
+                            <g class="ring-left-group">
+                                <circle cx="20" cy="15" r="11" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
+                                <polygon points="17,7 20,3 23,7" fill="url(#goldGradient)" />
+                            </g>
+                            <g class="ring-right-group">
+                                <circle cx="36" cy="15" r="11" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
+                            </g>
                         </svg>
                     </span>
                     <span class="gold-line"></span>
@@ -202,8 +187,10 @@
                 <!-- Main Event Card -->
                 <div class="details-card">
                     <div class="card-inner-border">
-                        <h2 class="section-title">Bride-side Reception</h2>
+                        <h2 class="section-title">Wedding Reception</h2>
+                        <div class="details-title-line"></div>
                         
+                        <!-- Row 1: Date -->
                         <div class="detail-row">
                             <div class="icon-wrap">
                                 <svg viewBox="0 0 24 24" width="20" height="20">
@@ -217,6 +204,9 @@
                             </div>
                         </div>
 
+                        <div class="detail-divider"></div>
+
+                        <!-- Row 2: Time -->
                         <div class="detail-row">
                             <div class="icon-wrap">
                                 <svg viewBox="0 0 24 24" width="20" height="20">
@@ -229,6 +219,9 @@
                             </div>
                         </div>
 
+                        <div class="detail-divider"></div>
+
+                        <!-- Row 3: Venue -->
                         <div class="detail-row">
                             <div class="icon-wrap">
                                 <svg viewBox="0 0 24 24" width="20" height="20">
@@ -246,28 +239,34 @@
 
                 <!-- Live Countdown Card -->
                 <div class="countdown-card">
-                    <h2 class="section-title">Counting the Days</h2>
-                    <p class="countdown-subtitle">Until the blessed day begins, Insha'Allah</p>
-                    
-                    <div id="countdownTimer" class="timer-container">
-                        <div class="timer-item">
-                            <span id="days" class="timer-num">00</span>
-                            <span class="timer-label">Days</span>
-                        </div>
-                        <div class="timer-sep">:</div>
-                        <div class="timer-item">
-                            <span id="hours" class="timer-num">00</span>
-                            <span class="timer-label">Hours</span>
-                        </div>
-                        <div class="timer-sep">:</div>
-                        <div class="timer-item">
-                            <span id="minutes" class="timer-num">00</span>
-                            <span class="timer-label">Minutes</span>
-                        </div>
-                        <div class="timer-sep">:</div>
-                        <div class="timer-item">
-                            <span id="seconds" class="timer-num">00</span>
-                            <span class="timer-label">Seconds</span>
+                    <div class="card-inner-border">
+                        <h2 class="section-title">Counting the Days</h2>
+                        <div class="details-title-line"></div>
+                        <p class="countdown-subtitle">Until the blessed day begins, Insha'Allah</p>
+                        
+                        <div class="countdown-reveal-wrapper">
+                            <div id="countdownTimer" class="timer-container">
+                                <div class="timer-item">
+                                    <span id="days" class="timer-num">00</span>
+                                    <span class="timer-label">Days</span>
+                                </div>
+                                <div class="timer-sep">:</div>
+                                <div class="timer-item">
+                                    <span id="hours" class="timer-num">00</span>
+                                    <span class="timer-label">Hours</span>
+                                </div>
+                                <div class="timer-sep">:</div>
+                                <div class="timer-item">
+                                    <span id="minutes" class="timer-num">00</span>
+                                    <span class="timer-label">Minutes</span>
+                                </div>
+                                <div class="timer-sep">:</div>
+                                <div class="timer-item">
+                                    <span id="seconds" class="timer-num">00</span>
+                                    <span class="timer-label">Seconds</span>
+                                </div>
+                            </div>
+                            <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
                         </div>
                     </div>
                 </div>
@@ -278,29 +277,33 @@
         <!-- 6. LOCATION & MAPS -->
         <section id="location" class="location-section scroll-reveal">
             <div class="location-card">
-                <h2 class="section-title">Venue Location</h2>
-                <p class="location-description">We look forward to welcoming you. Click below to view the location on Google Maps or navigate to Metro Auditorium Aravankara.</p>
-                
-                <div class="map-preview-container">
-                    <!-- Clean illustrative Map icon outline or styled card -->
-                    <div class="map-visual">
-                        <svg viewBox="0 0 24 24" width="36" height="36" class="map-pin animate-bounce" style="position: relative; z-index: 2;">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="url(#goldGradient)" />
-                        </svg>
-                        <div class="radar-pulse"></div>
-                    </div>
-                    <div class="venue-address">
-                        <h3>Metro Auditorium Aravankara</h3>
-                        <p>Aravankara, Malappuram, Kerala, India</p>
-                    </div>
-                </div>
+                <div class="card-inner-border location-card-center">
+                    <h2 class="section-title">Venue Location</h2>
+                    <div class="details-title-line"></div>
 
-                <a href="https://share.google/HXQa8DXbVYjMsTNyQ" target="_blank" rel="noopener noreferrer" class="premium-btn text-center inline-flex">
-                    <svg viewBox="0 0 24 24" width="20" height="20" class="mr-2">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
-                    </svg>
-                    Navigate to Venue
-                </a>
+                    <p class="location-description">
+                        We look forward to welcoming you. Click below to view the location on Google Maps or navigate to Metro Auditorium Aravankara.
+                    </p>
+
+                    <div class="venue-address-block">
+                        <div class="address-icon">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="url(#goldGradient)"/>
+                            </svg>
+                        </div>
+                        <div class="address-text">
+                            <h3>Metro Auditorium Aravankara</h3>
+                            <p>Aravankara, Malappuram, Kerala, India</p>
+                        </div>
+                    </div>
+
+                    <a href="https://share.google/HXQa8DXbVYjMsTNyQ" target="_blank" rel="noopener noreferrer" class="premium-btn text-center inline-flex">
+                        <svg viewBox="0 0 24 24" width="18" height="18" style="margin-right: 8px;">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+                        </svg>
+                        Navigate to Venue
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -367,7 +370,7 @@
         </section>
 
         <!-- FOOTER -->
-        <footer class="main-footer">
+        <footer class="main-footer" style="background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important;">
             <div class="footer-pattern"></div>
             <div class="footer-content">
                 <p class="footer-bismillah">بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
@@ -385,9 +388,18 @@
             </div>
         </footer>
 
+        <!-- PROMO BANNER -->
+        <div class="promo-banner">
+            <p class="promo-line">Want a site like this? Contact
+                <a href="tel:+919539660807" class="promo-name">Nasrin</a>
+                or
+                <a href="tel:+919746471303" class="promo-name">Naja</a>
+            </p>
+        </div>
+
     </div>
 
     <!-- Scripts -->
-    <script src="app.js?v=20260701_v10"></script>
+    <script src="app.js?v=20260702_v52"></script>
 </body>
 </html>
