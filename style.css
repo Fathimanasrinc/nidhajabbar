@@ -1572,14 +1572,16 @@ section {
    MOBILE RESPONSIVENESS OVERRIDES (max-width: 480px)
 ------------------------------------------------------------- */
 @media (max-width: 480px) {
-    /* Main wrapper margins and paddings */
-    .card-glass-panel,
+    .card-glass-panel {
+        padding: 30px 16px;
+    }
+
     .details-card,
     .countdown-card,
     .location-card,
     .rsvp-form-container,
     .guestbook-container {
-        padding: 30px 16px;
+        padding: 0;
     }
 
     /* Arched Card adjust */
