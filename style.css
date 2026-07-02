@@ -50,13 +50,13 @@ html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
     color: var(--text-dark);
-    background: transparent;
+    background-color: #130905; /* Solid dark background to prevent any white bar/flashes when scrolling */
     overflow-x: hidden;
 }
 
 body {
     min-height: 100vh;
-    background: transparent;
+    background-color: #130905;
     position: relative;
 }
 
@@ -318,21 +318,28 @@ section {
 /* -------------------------------------------------------------
    UNIFIED LUXURY LIGHT LINEN PANELS (Cohesive Cards)
 ------------------------------------------------------------- */
-.card-glass-panel,
+.card-glass-panel {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 120px 120px 24px 24px;
+    padding: 60px 40px;
+    width: 100%;
+    position: relative;
+    box-shadow: none;
+    color: var(--text-dark);
+}
+
 .details-card,
 .countdown-card,
 .location-card,
 .rsvp-form-container,
 .guestbook-container {
     background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     border: none;
-    border-radius: var(--border-radius-lg);
-    padding: 60px 40px;
     width: 100%;
     position: relative;
-    box-shadow: none;
     color: var(--text-dark);
 }
 
@@ -817,13 +824,63 @@ section {
     margin: 0 auto 10px;
 }
 
-.detail-row {
+/* Event split container styles */
+.details-split-container {
     display: flex;
-    flex-direction: column; /* Center stacked layout */
-    gap: 8px;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.details-split-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
     align-items: center;
+}
+
+.details-vertical-divider {
+    display: none;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(229, 196, 151, 0.25) 20%, rgba(229, 196, 151, 0.25) 80%, transparent);
+    align-self: stretch;
+}
+
+.detail-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     text-align: center;
     width: 100%;
+}
+
+.justify-center-column {
+    justify-content: center;
+}
+
+.venue-highlight {
+    font-size: 1.05rem !important;
+}
+
+.detail-divider {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(229, 196, 151, 0.2), transparent);
+    margin: 5px 0;
+}
+
+@media (min-width: 768px) {
+    .details-split-container {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 20px;
+    }
+    .details-vertical-divider {
+        display: block;
+    }
 }
 
 .icon-wrap {
