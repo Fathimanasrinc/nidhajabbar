@@ -1510,3 +1510,107 @@ section {
 .promo-name:hover {
     color: var(--gold-dark);
 }
+
+/* -------------------------------------------------------------
+   MOBILE RESPONSIVENESS OVERRIDES (max-width: 480px)
+------------------------------------------------------------- */
+@media (max-width: 480px) {
+    /* Main wrapper margins and paddings */
+    .card-glass-panel,
+    .details-card,
+    .countdown-card,
+    .location-card,
+    .rsvp-form-container,
+    .guestbook-container {
+        padding: 30px 16px;
+    }
+
+    /* Arched Card adjust */
+    .invitation-section .card-glass-panel {
+        border-radius: 80px 80px 24px 24px;
+        padding: 40px 16px 30px;
+    }
+
+    /* Titles size adjustments */
+    .section-title {
+        font-size: 1.35rem;
+        margin-bottom: 20px;
+    }
+
+    /* Event Details stacked padding */
+    .details-card .card-inner-border,
+    .countdown-card .card-inner-border {
+        padding: 30px 15px;
+        border-radius: 25px;
+    }
+
+    /* Location Card adjust */
+    .location-card .card-inner-border {
+        padding: 25px 15px;
+        border-radius: 25px;
+    }
+
+    .venue-address-block {
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    /* Form responsiveness */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .premium-form {
+        gap: 15px;
+    }
+
+    /* Countdown Reveal Wrapper */
+    .countdown-reveal-wrapper {
+        min-height: 100px;
+    }
+
+    /* Timer circles sizing on extremely narrow screens */
+    .timer-container {
+        gap: 6px;
+    }
+
+    .timer-item {
+        min-width: 66px;
+        min-height: 66px;
+        padding: 4px;
+    }
+
+    .timer-num {
+        font-size: 1.3rem;
+    }
+
+    .timer-label {
+        font-size: 0.45rem;
+        letter-spacing: 0.5px;
+    }
+}
+
+/* Height adjustments for short screens to prevent overlap */
+@media (max-height: 660px) and (max-width: 768px) {
+    .hero-header-container {
+        top: 25px;
+    }
+    .hero-greeting {
+        font-size: 1.15rem;
+        margin-bottom: 6px;
+    }
+    .hero-desc {
+        max-width: 90%;
+        line-height: 1.5;
+    }
+    .hero-bride, .hero-groom {
+        font-size: 1.8rem;
+    }
+    .hero-details-container {
+        bottom: 45px;
+    }
+    .scroll-down-indicator {
+        bottom: 12px;
+    }
+}
