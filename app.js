@@ -136,23 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- 6. Interactive RSVP & Wishes Guestbook ---
-    const initialWishes = [
-        {
-            name: "Fathima & Family",
-            attendance: "yes",
-            message: "Barakallahu lakuma wa baraka 'alaikuma wa jama'a bainakuma fii khair. Hearty congratulations to Shaheen and Nidha! Wishing you both a lifetime of happiness, love, and endless blessings."
-        },
-        {
-            name: "Dr. Niyas Muhammed",
-            attendance: "yes",
-            message: "So happy to see this beautiful union! May Allah shower His mercy upon your new journey together. Excited for the reception!"
-        },
-        {
-            name: "Aisha PT",
-            attendance: "yes",
-            message: "Wishing dearest Nidha and Shaheen a blessed married life. May Allah fill your home with peace (Sakinah) and joy."
-        }
-    ];
+    const initialWishes = [];
 
     function saveWishes(wishes) {
         try {
@@ -186,6 +170,17 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderWishes() {
         const wishes = getWishes();
         wishesBoard.innerHTML = "";
+
+        if (wishes.length === 0) {
+            wishesBoard.innerHTML = `
+                <div class="wish-item loading" style="text-align: center; height: 100px; border: none; background: transparent; box-shadow: none;">
+                    <p class="wish-text" style="color: var(--text-muted); font-size: 0.82rem; font-style: italic;">
+                        No prayers or wishes left yet.<br>Be the first to send your blessings! ✨
+                    </p>
+                </div>
+            `;
+            return;
+        }
 
         wishes.slice().reverse().forEach(wish => {
             const isAttending = wish.attendance === "yes";
