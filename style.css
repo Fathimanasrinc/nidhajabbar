@@ -50,13 +50,13 @@ html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
     color: var(--text-dark);
-    background-color: #130905; /* Solid dark background to prevent any white bar/flashes when scrolling */
+    background: transparent;
     overflow-x: hidden;
 }
 
 body {
     min-height: 100vh;
-    background-color: #130905;
+    background: transparent;
     position: relative;
 }
 
