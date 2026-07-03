@@ -24,7 +24,7 @@
     --font-accent: 'Cinzel Decorative', serif;
     --font-body: 'Montserrat', sans-serif;
     --font-arabic: 'Aref Ruqaa', serif;
-    --font-script: 'Pinyon Script', cursive;
+    --font-script: 'Cormorant Garamond', serif;
     --font-serif: 'Cormorant Garamond', serif;
 }
 
@@ -58,6 +58,7 @@ body {
     min-height: 100vh;
     background: transparent;
     position: relative;
+    overflow-x: hidden;
 }
 
 /* -------------------------------------------------------------
@@ -301,6 +302,7 @@ section {
     align-items: center;
     position: relative;
     background: transparent;
+    overflow-x: hidden;
 }
 
 /* Scroll Reveal */
@@ -447,10 +449,12 @@ section {
 
 .hero-bride, .hero-groom {
     font-family: var(--font-script);
-    font-size: 2.0rem; /* responsive centered size for mobile */
-    font-weight: 400;
+    font-size: 2.5rem; /* responsive centered size for mobile */
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.5px;
     color: var(--gold-dark);
-    line-height: 1.1;
+    line-height: 1.2;
 }
 
 .hero-connector {
@@ -619,7 +623,8 @@ section {
 
 .person-name {
     font-family: var(--font-script);
-    font-size: 2.2rem;
+    font-size: 2.6rem;
+    font-style: italic;
     display: inline-block;
     color: var(--gold-dark);
     background: var(--gold-gradient);
@@ -749,7 +754,7 @@ section {
     }
 
     .person-name {
-        font-size: 2.8rem;
+        font-size: 3.2rem;
         margin-bottom: 10px;
     }
 
@@ -1491,7 +1496,7 @@ section {
     }
 
     .hero-bride, .hero-groom {
-        font-size: 3.0rem;
+        font-size: 3.6rem;
     }
 
     .hero-connector span {
@@ -1664,12 +1669,263 @@ section {
         line-height: 1.5;
     }
     .hero-bride, .hero-groom {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
     }
     .hero-details-container {
         bottom: 45px;
     }
     .scroll-down-indicator {
         bottom: 12px;
+    }
+}
+
+
+/* Footer Dedication Styling */
+.footer-dedication {
+    margin-bottom: 25px;
+    padding: 0 15px;
+}
+
+.dedication-title {
+    font-family: var(--font-serif);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.dedication-names {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    max-width: 85%;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* Horizontal Text Reveal Animations */
+.slide-from-left,
+.slide-from-right {
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+.slide-from-left {
+    transform: translate3d(-60px, 0, 0);
+}
+
+.slide-from-right {
+    transform: translate3d(60px, 0, 0);
+}
+
+.slide-from-left.active,
+.slide-from-right.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+/* -------------------------------------------------------------
+   ADMIN LOGIN & DASHBOARD MODAL STYLING
+------------------------------------------------------------- */
+.hidden {
+    display: none !important;
+}
+
+.admin-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(26, 13, 8, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.admin-modal-container {
+    background: var(--primary-champagne);
+    border: 1.5px solid rgba(229, 196, 151, 0.35);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(229, 196, 151, 0.04);
+    border-radius: var(--border-radius-lg);
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    padding: 40px 30px;
+    position: relative;
+    overflow-y: auto;
+}
+
+.admin-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: var(--primary-gold);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+.admin-close-btn:hover {
+    color: var(--gold-light);
+    transform: scale(1.1);
+}
+
+.admin-title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--gold-dark);
+    text-align: center;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.admin-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error-msg {
+    color: #FF5252;
+    font-size: 0.78rem;
+    font-weight: 550;
+    text-align: center;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* Stats Summary Cards */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.stat-card {
+    background: rgba(45, 25, 18, 0.6);
+    border: 1px solid rgba(229, 196, 151, 0.2);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-num {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--gold-dark);
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary-gold);
+}
+
+/* Guests Attendance Details Table */
+.admin-table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 15px;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid rgba(229, 196, 151, 0.2);
+    background: rgba(45, 25, 18, 0.4);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.8rem;
+    color: var(--text-dark);
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(229, 196, 151, 0.15);
+}
+
+.admin-table th {
+    background: rgba(26, 13, 8, 0.7);
+    font-family: var(--font-serif);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary-gold);
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(229, 196, 151, 0.05);
+}
+
+.admin-table td.message-cell {
+    font-style: italic;
+    color: var(--text-muted);
+    min-width: 200px;
+    white-space: normal;
+}
+
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.status-badge.yes {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: #81C784;
+    border: 0.5px solid rgba(129, 199, 132, 0.3);
+}
+
+.status-badge.no {
+    background-color: rgba(244, 67, 54, 0.15);
+    color: #E57373;
+    border: 0.5px solid rgba(229, 115, 115, 0.3);
+}
+
+@media (max-width: 480px) {
+    .admin-modal-container {
+        padding: 30px 15px;
+    }
+    .admin-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .stat-num {
+        font-size: 1.8rem;
+    }
+    .admin-table th,
+    .admin-table td {
+        padding: 10px;
     }
 }

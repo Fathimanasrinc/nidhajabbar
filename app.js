@@ -1,5 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    // --- Supabase Config & Client Initialization ---
+    // Update these credentials with your actual Supabase Project URL and Anon Public Key:
+    const SUPABASE_URL = 'https://ryuwogxpeiambcjkdxll.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5dXdvZ3hwZWlhbWJjamtkeGxsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwNDM5NjYsImV4cCI6MjA5ODYxOTk2Nn0.y2UUOXKtzP6evIVE6UviT1zYYAUCBR0Am1ezyFvNE3A';
+    
+    let supabase = null;
+    let isSupabaseConfigured = false;
+    
+    if (typeof window.supabase !== 'undefined' && 
+        SUPABASE_URL !== 'YOUR_SUPABASE_URL' && 
+        SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
+        try {
+            const { createClient } = window.supabase;
+            supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            isSupabaseConfigured = true;
+            console.log("Supabase successfully initialized.");
+        } catch (e) {
+            console.error("Failed to initialize Supabase client:", e);
+        }
+    } else {
+        console.warn("Supabase is not configured yet. Falling back to local storage.");
+    }
+    
     // --- DOM Elements ---
     const welcomeGate = document.getElementById("welcomeGate");
     const waxSeal = document.getElementById("waxSeal");
@@ -115,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 5. Scroll Reveal (Intersection Observer) ---
     function initScrollAnimations() {
-        const revealElements = document.querySelectorAll(".scroll-reveal");
+        const revealElements = document.querySelectorAll(".scroll-reveal, .slide-from-left, .slide-from-right");
 
         const observerOptions = {
             root: null,
@@ -138,37 +161,92 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 6. Interactive RSVP & Wishes Guestbook ---
     const initialWishes = [];
 
-    function saveWishes(wishes) {
+    function saveWishesLocal(wishes) {
         try {
             localStorage.setItem("wedding_wishes", JSON.stringify(wishes));
             return true;
         } catch (e) {
-            // Check for QuotaExceededError across different browsers
             if (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED' || e.code === 22 || e.code === 1014) {
                 if (wishes.length > 1) {
-                    // Delete the oldest wish (the first one at index 0)
                     wishes.shift();
-                    // Try saving again
-                    return saveWishes(wishes);
+                    return saveWishesLocal(wishes);
                 }
             }
-            console.error("Failed to save wishes:", e);
+            console.error("Failed to save wishes locally:", e);
             return false;
         }
     }
 
-    function getWishes() {
+    function getWishesLocal() {
         const stored = localStorage.getItem("wedding_wishes");
         if (stored) {
-            return JSON.parse(stored);
+            try {
+                const parsed = JSON.parse(stored);
+                if (!Array.isArray(parsed) || parsed.length === 0) {
+                    saveWishesLocal(initialWishes);
+                    return initialWishes;
+                }
+                
+                let updated = [...parsed];
+                let changed = false;
+                initialWishes.forEach(dw => {
+                    if (!parsed.some(w => w && w.name === dw.name)) {
+                        updated.push(dw);
+                        changed = true;
+                    }
+                });
+                
+                if (updated.length > 3) {
+                    updated = updated.slice(updated.length - 3);
+                    changed = true;
+                }
+                
+                if (changed) {
+                    saveWishesLocal(updated);
+                }
+                return updated;
+            } catch (err) {
+                console.error("Error parsing stored wishes:", err);
+                saveWishesLocal(initialWishes);
+                return initialWishes;
+            }
         } else {
-            saveWishes(initialWishes);
+            saveWishesLocal(initialWishes);
             return initialWishes;
         }
     }
 
-    function renderWishes() {
-        const wishes = getWishes();
+    async function renderWishes() {
+        wishesBoard.innerHTML = `
+            <div class="wish-item loading" style="text-align: center; height: 100px; border: none; background: transparent; box-shadow: none;">
+                <p class="wish-text" style="color: var(--text-muted); font-size: 0.82rem; font-style: italic;">Loading blessings...</p>
+            </div>
+        `;
+        
+        let wishes = [];
+        if (isSupabaseConfigured) {
+            try {
+                const { data, error } = await supabase
+                    .from('wishes')
+                    .select('*')
+                    .order('created_at', { ascending: false })
+                    .limit(3);
+                
+                if (error) throw error;
+                
+                if (data && data.length > 0) {
+                    wishes = data.slice().reverse();
+                } else {
+                    wishes = initialWishes;
+                }
+            } catch (err) {
+                console.error("Failed to fetch wishes from Supabase, using local storage:", err);
+                wishes = getWishesLocal();
+            }
+        } else {
+            wishes = getWishesLocal();
+        }
+
         wishesBoard.innerHTML = "";
 
         if (wishes.length === 0) {
@@ -201,6 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function escapeHtml(text) {
+        if (!text) return '';
         const map = {
             '&': '&amp;',
             '<': '&lt;',
@@ -211,11 +290,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 
-    rsvpForm.addEventListener("submit", (e) => {
+    rsvpForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const nameInput = document.getElementById("guestName").value.trim();
         const attendanceInput = document.getElementById("attendance").value;
+        const guestCountInput = document.getElementById("guestCount").value;
         const messageInput = document.getElementById("duaMessage").value.trim();
 
         if (!nameInput || !attendanceInput || !messageInput) {
@@ -223,25 +303,47 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const guestCount = parseInt(guestCountInput, 10) || 1;
         const newWish = {
             name: nameInput,
             attendance: attendanceInput,
+            guest_count: guestCount,
             message: messageInput
         };
 
-        const currentWishes = getWishes();
-        currentWishes.push(newWish);
-        saveWishes(currentWishes);
+        const submitBtn = document.getElementById("submitBtn");
+        submitBtn.disabled = true;
 
-        renderWishes();
+        if (isSupabaseConfigured) {
+            try {
+                const { error } = await supabase
+                    .from('wishes')
+                    .insert([
+                        {
+                            name: newWish.name,
+                            attendance: newWish.attendance,
+                            guest_count: newWish.guest_count,
+                            message: newWish.message
+                        }
+                    ]);
+                
+                if (error) throw error;
+                console.log("Wish successfully saved to Supabase.");
+            } catch (err) {
+                console.error("Failed to save to Supabase, saving locally:", err);
+                saveWishLocally(newWish);
+            }
+        } else {
+            saveWishLocally(newWish);
+        }
+
+        await renderWishes();
         rsvpForm.reset();
 
-        const submitBtn = document.getElementById("submitBtn");
         const originalText = submitBtn.textContent;
         submitBtn.textContent = "Sent with Love! ✨";
         submitBtn.style.background = "linear-gradient(135deg, #2E7D32, #4CAF50, #2E7D32)";
         submitBtn.style.color = "#fff";
-        submitBtn.disabled = true;
 
         setTimeout(() => {
             submitBtn.textContent = originalText;
@@ -255,6 +357,135 @@ document.addEventListener("DOMContentLoaded", () => {
             behavior: "smooth"
         });
     });
+
+    function saveWishLocally(newWish) {
+        const currentWishes = getWishesLocal();
+        currentWishes.push(newWish);
+        while (currentWishes.length > 3) {
+            currentWishes.shift();
+        }
+        saveWishesLocal(currentWishes);
+    }
+
+    // --- 7. Admin Login & Stats Dashboard ---
+    const adminTriggerBtn = document.getElementById("adminTriggerBtn");
+    const adminModal = document.getElementById("adminModal");
+    const adminCloseBtn = document.getElementById("adminCloseBtn");
+    const adminLoginForm = document.getElementById("adminLoginForm");
+    const adminId = document.getElementById("adminId");
+    const adminPass = document.getElementById("adminPass");
+    const loginErrorMsg = document.getElementById("loginErrorMsg");
+    const adminLoginView = document.getElementById("adminLoginView");
+    const adminDashboardView = document.getElementById("adminDashboardView");
+    const statTotalAttending = document.getElementById("statTotalAttending");
+    const statTotalWishes = document.getElementById("statTotalWishes");
+    const adminGuestListBody = document.getElementById("adminGuestListBody");
+
+    if (adminTriggerBtn && adminModal && adminCloseBtn) {
+        adminTriggerBtn.addEventListener("click", () => {
+            adminModal.classList.remove("hidden");
+            adminLoginView.classList.remove("hidden");
+            adminDashboardView.classList.add("hidden");
+            adminLoginForm.reset();
+            loginErrorMsg.classList.add("hidden");
+        });
+
+        adminCloseBtn.addEventListener("click", () => {
+            adminModal.classList.add("hidden");
+        });
+
+        adminModal.addEventListener("click", (e) => {
+            if (e.target === adminModal) {
+                adminModal.classList.add("hidden");
+            }
+        });
+    }
+
+    if (adminLoginForm) {
+        adminLoginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const idVal = adminId.value.trim();
+            const passVal = adminPass.value.trim();
+
+            if (idVal === "nidha213" && passVal === "nidha@123") {
+                loginErrorMsg.classList.add("hidden");
+                adminLoginView.classList.add("hidden");
+                adminDashboardView.classList.remove("hidden");
+                await loadAdminDashboardData();
+            } else {
+                loginErrorMsg.classList.remove("hidden");
+            }
+        });
+    }
+
+    async function loadAdminDashboardData() {
+        adminGuestListBody.innerHTML = `
+            <tr>
+                <td colspan="4" style="text-align: center; font-style: italic; color: var(--text-muted); padding: 20px;">Loading guest details...</td>
+            </tr>
+        `;
+
+        let rsvps = [];
+        if (isSupabaseConfigured) {
+            try {
+                const { data, error } = await supabase
+                    .from('wishes')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                if (error) throw error;
+                rsvps = data || [];
+            } catch (err) {
+                console.error("Failed to load wishes from Supabase for dashboard:", err);
+                rsvps = getWishesLocal();
+            }
+        } else {
+            rsvps = getWishesLocal();
+        }
+
+        renderAdminDashboard(rsvps);
+    }
+
+    function renderAdminDashboard(rsvps) {
+        const totalWishes = rsvps.length;
+        
+        let totalAttending = 0;
+        rsvps.forEach(rsvp => {
+            if (rsvp.attendance === "yes") {
+                const count = parseInt(rsvp.guest_count, 10) || 1;
+                totalAttending += count;
+            }
+        });
+
+        statTotalWishes.textContent = totalWishes;
+        statTotalAttending.textContent = totalAttending;
+
+        adminGuestListBody.innerHTML = "";
+        if (rsvps.length === 0) {
+            adminGuestListBody.innerHTML = `
+                <tr>
+                    <td colspan="4" style="text-align: center; font-style: italic; color: var(--text-muted); padding: 15px;">No RSVPs found.</td>
+                </tr>
+            `;
+            return;
+        }
+
+        rsvps.forEach(rsvp => {
+            const isAttending = rsvp.attendance === "yes";
+            const statusLabel = isAttending ? "Yes" : "No";
+            const statusBadgeClass = isAttending ? "status-badge yes" : "status-badge no";
+            const guestCountText = isAttending ? (rsvp.guest_count || 1) : 0;
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td style="font-weight: 500; color: var(--gold-dark);">${escapeHtml(rsvp.name)}</td>
+                <td><span class="${statusBadgeClass}">${statusLabel}</span></td>
+                <td style="font-weight: 600;">${guestCountText}</td>
+                <td class="message-cell">${escapeHtml(rsvp.message)}</td>
+            `;
+            adminGuestListBody.appendChild(tr);
+        });
+    }
 
     // Initial Wishes Render
     renderWishes();
