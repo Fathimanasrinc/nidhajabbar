@@ -218,8 +218,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function renderWishes() {
         wishesBoard.innerHTML = `
-            <div class="wish-item loading" style="text-align: center; height: 100px; border: none; background: transparent; box-shadow: none;">
-                <p class="wish-text" style="color: var(--text-muted); font-size: 0.82rem; font-style: italic;">Loading blessings...</p>
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%; text-align: center;">
+                <p style="color: var(--text-muted); font-size: 0.85rem; font-family: var(--font-body); font-style: italic; margin: 0;">
+                    Loading blessings...
+                </p>
             </div>
         `;
         
@@ -251,9 +253,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (wishes.length === 0) {
             wishesBoard.innerHTML = `
-                <div class="wish-item loading" style="text-align: center; height: 100px; border: none; background: transparent; box-shadow: none;">
-                    <p class="wish-text" style="color: var(--text-muted); font-size: 0.82rem; font-style: italic;">
-                        No prayers or wishes left yet.<br>Be the first to send your blessings! ✨
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center; padding: 20px; box-sizing: border-box;">
+                    <p style="color: var(--primary-gold); font-size: 1.25rem; font-family: var(--font-serif); font-style: italic; line-height: 1.5; margin: 0;">
+                        No prayers or wishes left yet.
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; font-family: var(--font-body); margin-top: 8px; margin-bottom: 0;">
+                        Be the first to send your blessings! ✨
                     </p>
                 </div>
             `;
